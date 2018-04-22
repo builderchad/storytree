@@ -1,0 +1,6 @@
+{
+  "appId": "com.drakensberg.storytree",
+  "appName": "Storytree",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

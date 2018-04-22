@@ -1,0 +1,73 @@
+{
+  "name": "storytree",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Storytree Prototype",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "buildWithPR": "stencil build --prerender",
+    "build": "stencil build",
+    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+    "devWithSW": "sd concurrent \"stencil build --dev --service-worker --watch\" \"stencil-dev-server\" ",
+    "serve": "stencil-dev-server",
+    "start": "npm run dev",
+    "test": "jest --no-cache",
+    "test.watch": "jest --watch --no-cache"
+  },
+  "dependencies": {
+    "@ionic/core": "4.0.0-alpha.2",
+    "@stencil/core": "0.7.24",
+    "connect": "^3.6.6",
+    "micromatch": "^3.1.10",
+    "proxy-middleware": "^0.15.0",
+    "serve-static": "^1.13.2",
+    "url": "^0.11.0",
+    "@capacitor/cli": "^1.0.0-alpha.35",
+    "@capacitor/core": "^1.0.0-alpha.35"  
+  },
+  "devDependencies": {
+    "@stencil/dev-server": "latest",
+    "@stencil/sass": "0.0.3",
+    "@stencil/utils": "latest",
+    "@types/jest": "^22.2.2",
+    "jest": "^22.4.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/stencil-app-starter.git"
+  },
+  "author": "Chad Thatcher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/builderchad/storytree"
+  },
+  "homepage": "https://github.com/builderchad/storytree",
+  "jest": {
+    "transform": {
+      "^.+\\.(js|ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
+  },
+  "OLD___config": {
+    "ionic_bundler": "webpack",
+    "ionic_webpack": "./config/webpack.config.js"
+  },
+  "OLD___build": {
+    "appId": "com.drakensberg.ionic-electron-test",
+    "electronVersion": "1.8.4",
+    "asar": false,
+    "files": [
+      "www/**/*",
+      "electron/*"
+    ]
+  }
+}
