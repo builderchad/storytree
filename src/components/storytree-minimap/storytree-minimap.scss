@@ -3,9 +3,9 @@ storytree-minimap {
         border: 1px solid black;
         background-image: url("/assets/image/seamless_paper.png");
         background-repeat: repeat;
-        // overflow: scroll;
-        overflow-x: scroll;
-        overflow-y: hidden;
+        overflow: scroll;
+        // overflow-x: scroll;
+        // overflow-y: hidden;
     }
 
     svg {

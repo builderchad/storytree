@@ -1,8 +1,12 @@
 import { Component, Element } from '@stencil/core';
+import { DocNode } from './doc-node';
 
+
+const NS = 'http://www.w3.org/2000/svg';
 // wireframe.addEventListener( 'change', function () {
 //   stage.classList.toggle( 'wireframe' );
 // });
+
 
 @Component({
   tag: 'storytree-minimap',
@@ -13,29 +17,24 @@ export class StorytreeMinimap {
 
   svg: SVGSVGElement;
   selected: SVGAElement;
-  // bx: SVGAElement;
-  selection: HTMLElement;
-	offset = { x: 0, y: 0 };
+  // selection: HTMLElement;
 
-  NS = 'http://www.w3.org/2000/svg';
+  selectionHighlighter: SVGRectElement;
+  focusHighlighter: SVGRectElement;
 
-  componentDidLoad() {
-    this.selection = document.createElement('span');
-    this.selected = null;
-    this.svg = this.storytreeMinimapEl.querySelector('svg');
-    this.createRectangle(10, 20);
-    this.createRectangle(230, 20);
+  offset = { x: 0, y: 0 };
 
+  setListeners() {
     this.svg.addEventListener( 'mouseover', () => this.updateSelection());
 
     this.svg.addEventListener( 'mousedown', (event) => {
       let target = event.target as SVGAElement;    
       let group = target.parentNode as SVGAElement;
       if (target.isSameNode(this.svg) === false) {
-        // this.offset.x = parseFloat(target.getAttribute( 'x' )) - event.clientX;
-        // this.offset.y = parseFloat(target.getAttribute( 'y' )) - event.clientY;
-        this.offset.x = target.getBoundingClientRect().left;
-        this.offset.y = target.getBoundingClientRect().top;
+        this.offset.x = parseFloat(target.getAttribute( 'x' )) - event.clientX;
+        this.offset.y = parseFloat(target.getAttribute( 'y' )) - event.clientY;
+        // this.offset.x = target.getBoundingClientRect().left;
+        // this.offset.y = target.getBoundingClientRect().top;
         // this.offset.x = event.clientX;
         // this.offset.y = event.clientY;
         console.log(this.offset);
@@ -49,79 +48,139 @@ export class StorytreeMinimap {
 
 		window.addEventListener( 'mousemove', (event) => {
 			if (this.selected) {
-        this.selected.setAttribute('transform', `translate(${event.clientX + this.offset.x},${event.clientY + this.offset.y})`);       
-        // this.selected.setAttribute('transform', `translate(${event.clientX},${event.clientY})`);       
-        // this.selected.setAttribute('transform', `translate(${this.offset.x},${this.offset.y})`);       
+        this.selected.setAttribute('transform', `translate(${event.clientX + this.offset.x},${event.clientY + this.offset.y})`);
+        console.log(`translate(${event.clientX + this.offset.x},${event.clientY + this.offset.y})`);       
+        // this.selected.setAttribute('transform', `translate(${event.clientX - this.offset.x},${event.clientY - this.offset.y})`);       
+        // this.selected.setAttribute('transform', `translate(${this.offset.x - event.clientX},${this.offset.y - event.clientY})`);
+        // this.offset.x = event.clientX + this.offset.x;
+        // this.offset.y = event.clientY + this.offset.y;
 				this.updateSelection();
       }
     });
-    
-    this.selection.style.position = 'absolute';
-    this.selection.style.display = 'block';
-    this.selection.style.outline = 'solid 2px #99f';
-    this.selection.style.pointerEvents = 'none';
-    this.storytreeMinimapEl.appendChild(this.selection);
+
   }
+ 
+  componentDidLoad() {
+    // this.selection = document.createElement('span');
+    
+    this.selected = null;
+    this.svg = this.storytreeMinimapEl.querySelector('svg');
+
+    this.selectionHighlighter = document.createElementNS( NS, 'rect' );
+    this.selectionHighlighter.setAttribute('fill', '#a0a0ff');
+    this.selectionHighlighter.setAttribute('rx', '4');
+    this.selectionHighlighter.setAttribute('ry', '4');
+
+    this.focusHighlighter = document.createElementNS( NS, 'rect' );
+    
+    this.svg.appendChild(this.selectionHighlighter);
+    this.svg.appendChild(this.focusHighlighter);
+
+    let firstNode = new DocNode(10, 20, "Start");
+    this.addNode(firstNode);
+    this.selectNode(firstNode);
+
+        // new DocNode(230, 20, "Branch A");
+
+
+    this.setListeners();
+
+  }
+
+  clear() { this.svg.textContent = ''; }
+  addNode(node) { this.svg.appendChild(node.getGroupNode()); }
+
+
+  selectNode(node) {
+
+    console.log('box:',node.getBBox());
+    let nodeBounds: SVGRect = node.getBBox();
+    this.selectionHighlighter.setAttribute('x', ''+ (nodeBounds.x - 3));
+    this.selectionHighlighter.setAttribute('y', ''+ (nodeBounds.y - 3));
+    this.selectionHighlighter.setAttribute('width', ''+ (nodeBounds.width + 6));
+    this.selectionHighlighter.setAttribute('height', ''+ (nodeBounds.height + 6));
+
+
+  }
+
 
   updateSelection() {
-    if (this.selected) {
-      if (this.selected.isSameNode(this.svg)) {
-        this.selection.style.display = 'none';
-      } else {
-        let rect = this.selected.getBoundingClientRect();
-        // let rect = this.selected.children[0].getBoundingClientRect();
-        this.selection.style.left = rect.left + 'px';
-        this.selection.style.top = rect.top + 'px';
-        this.selection.style.width = rect.width + 'px';
-        this.selection.style.height = rect.height + 'px';
-        this.selection.style.display = 'block';
-      }
-    }
+    // if (this.selected) {
+    //   if (this.selected.isSameNode(this.svg)) {
+    //     this.selection.style.display = 'none';
+    //   } else {
+    //     let rect = this.selected.getBoundingClientRect();
+    //     // let rect = this.selected.children[0].getBoundingClientRect();
+    //     this.selection.style.left = rect.left + 'px';
+    //     this.selection.style.top = rect.top + 'px';
+    //     this.selection.style.width = rect.width + 'px';
+    //     this.selection.style.height = rect.height + 'px';
+    //     this.selection.style.display = 'block';
+    //   }
+    // }
 	}
 
-
-  createRectangle(x: number, y: number) {
-    let group = document.createElementNS( this.NS, 'g' );
-    let box = document.createElementNS( this.NS, 'rect' );
-    this.setAttributes(box, {
-      'x': ''+x, 'y': ''+y,
-      'rx': '3', 'ry': '3',
-      'width': "100", 'height': "30",
-      'fill': '#00ff00', 'stroke': 'black'
-    });
-    group.appendChild(box);
-
-    let text = document.createElementNS( this.NS, 'text' );
-    this.setAttributes(text, {
-      'x': ''+(x+2), 'y': ''+(y+14),
-      'font-size': '14px',
-      'stroke': 'black', 'fill': '#509464'
-    });
-    text.textContent = 'START';
-    group.appendChild(text);
-
-    this.addElement(group);
-    return group;
+  render() {
+    return [
+      <div>
+        <svg id="stage"></svg>
+      </div>
+    ]
   }
 
-  addElement( element ) {
-    this.svg.appendChild( element );
-    // this.svg.appendChild( document.createTextNode( '\n' ) );
-  }
 
-  setAttributes(el, attributes) {
-    for (let key of Object.keys(attributes)) {
-      el.setAttribute(key, attributes[key]);
-    }
-  }
+  // createRectangle(x: number, y: number) {
+  //   let group = document.createElementNS( this.NS, 'g' );
+  //   let box = document.createElementNS( this.NS, 'rect' );
+  //   this.setAttributes(box, {
+  //     'x': ''+x, 'y': ''+y,
+  //     'rx': '3', 'ry': '3',
+  //     'width': "100", 'height': "30",
+  //     'fill': '#00ff00', 'stroke': 'black'
+  //   });
+  //   group.appendChild(box);
 
-  setSVG( svg ) {
-    this.svg.innerHTML = svg.documentElement.innerHTML;
-  }
+  //   let text = document.createElementNS( this.NS, 'text' );
+  //   this.setAttributes(text, {
+  //     'x': ''+(x+2), 'y': ''+(y+14),
+  //     'font-size': '14px',
+  //     'stroke': 'black', 'fill': '#509464'
+  //   });
+  //   text.textContent = 'START';
+  //   group.appendChild(text);
 
-  clear() {
-    this.svg.textContent = '';
-  }
+  //   this.addElement(group);
+  //   return group;
+  // }
+
+  // getOffset( el ) {
+  //   var _x = 0;
+  //   var _y = 0;
+  //   while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+  //       _x += el.offsetLeft - el.scrollLeft;
+  //       _y += el.offsetTop - el.scrollTop;
+  //       el = el.offsetParent;
+  //   }
+  //   return { top: _y, left: _x };
+  // }
+  // var x = getOffset( document.getElementById('yourElId') ).left; 
+
+
+  // addElement(element) {
+  //   this.svg.appendChild(element);
+  //   // this.svg.appendChild( document.createTextNode( '\n' ) );
+  // }
+
+  // setAttributes(el, attributes) {
+  //   for (let key of Object.keys(attributes)) {
+  //     el.setAttribute(key, attributes[key]);
+  //   }
+  // }
+
+  // setSVG( svg ) {
+  //   this.svg.innerHTML = svg.documentElement.innerHTML;
+  // }
+
 
   // var divA       = document.querySelector("#a");
   // var divB       = document.querySelector("#b");
@@ -165,13 +224,6 @@ export class StorytreeMinimap {
   
   // }
   
-  render() {
-    return [
-      <div>
-        <svg id="stage"></svg>
-      </div>
-    ]
-  }
 
 }
 
