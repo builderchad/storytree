@@ -2,7 +2,7 @@ import { Component, Element } from '@stencil/core';
 import { DocNode } from './doc-node';
 
 
-const NS = 'http://www.w3.org/2000/svg';
+// const NS = 'http://www.w3.org/2000/svg';
 // wireframe.addEventListener( 'change', function () {
 //   stage.classList.toggle( 'wireframe' );
 // });
@@ -13,49 +13,60 @@ const NS = 'http://www.w3.org/2000/svg';
   styleUrl: 'storytree-minimap.scss'
 })
 export class StorytreeMinimap {
+  
   @Element() storytreeMinimapEl: HTMLElement;
 
+  docMap: HTMLDivElement;
   svg: SVGSVGElement;
-  selected: SVGAElement;
+  selected: HTMLElement;
+
   // selection: HTMLElement;
 
-  selectionHighlighter: SVGRectElement;
-  focusHighlighter: SVGRectElement;
+  // selectionHighlighter: SVGRectElement;
+  // focusHighlighter: SVGRectElement;
 
-  offset = { x: 0, y: 0 };
+  // offset = { x: 0, y: 0 };
 
   setListeners() {
     this.svg.addEventListener( 'mouseover', () => this.updateSelection());
 
-    this.svg.addEventListener( 'mousedown', (event) => {
-      let target = event.target as SVGAElement;    
-      let group = target.parentNode as SVGAElement;
-      if (target.isSameNode(this.svg) === false) {
-        this.offset.x = parseFloat(target.getAttribute( 'x' )) - event.clientX;
-        this.offset.y = parseFloat(target.getAttribute( 'y' )) - event.clientY;
+    this.svg.addEventListener( 'mousedown', (_event) => {
+      // let target = event.target as SVGAElement;
+      // let group = target.parentNode as SVGAElement;
+      // if (target.isSameNode(this.svg) === false) {
+        // this.offset.x = parseFloat(target.getAttribute( 'x' )) - event.clientX;
+        // this.offset.y = parseFloat(target.getAttribute( 'y' )) - event.clientY;
         // this.offset.x = target.getBoundingClientRect().left;
         // this.offset.y = target.getBoundingClientRect().top;
         // this.offset.x = event.clientX;
         // this.offset.y = event.clientY;
-        console.log(this.offset);
-        this.selected = group;
+        // console.log(this.offset);
+        // this.selected = group;
         // this.bx = target;
-        this.updateSelection();
-			}
+        // this.updateSelection();
+			// }
 		});
 
 		this.svg.addEventListener( 'mouseup', () => { this.selected = null });
 
-		window.addEventListener( 'mousemove', (event) => {
-			if (this.selected) {
-        this.selected.setAttribute('transform', `translate(${event.clientX + this.offset.x},${event.clientY + this.offset.y})`);
-        console.log(`translate(${event.clientX + this.offset.x},${event.clientY + this.offset.y})`);       
+		window.addEventListener( 'mousemove', (_event) => {
+
+      // if (this.selected) {
+        // if (g.transform.baseVal.numberOfItems == 0) {
+        //   g.setAttribute("transform", "translate(" + 50 + ", " + 50 + ")");
+        // } else {
+        //   t  = g.transform.baseVal.getItem(0),
+        //   t.setMatrix(t.matrix.translate(50, 50));
+        // }
+            
+        // this.selected.setAttribute('transform', `translate(${event.clientX + this.offset.x},${event.clientY + this.offset.y})`);
+        // console.log(`translate(${event.clientX + this.offset.x},${event.clientY + this.offset.y})`);       
         // this.selected.setAttribute('transform', `translate(${event.clientX - this.offset.x},${event.clientY - this.offset.y})`);       
         // this.selected.setAttribute('transform', `translate(${this.offset.x - event.clientX},${this.offset.y - event.clientY})`);
         // this.offset.x = event.clientX + this.offset.x;
         // this.offset.y = event.clientY + this.offset.y;
-				this.updateSelection();
-      }
+				// this.updateSelection();
+      // }
     });
 
   }
@@ -65,16 +76,6 @@ export class StorytreeMinimap {
     
     this.selected = null;
     this.svg = this.storytreeMinimapEl.querySelector('svg');
-
-    this.selectionHighlighter = document.createElementNS( NS, 'rect' );
-    this.selectionHighlighter.setAttribute('fill', '#a0a0ff');
-    this.selectionHighlighter.setAttribute('rx', '4');
-    this.selectionHighlighter.setAttribute('ry', '4');
-
-    this.focusHighlighter = document.createElementNS( NS, 'rect' );
-    
-    this.svg.appendChild(this.selectionHighlighter);
-    this.svg.appendChild(this.focusHighlighter);
 
     let firstNode = new DocNode(10, 20, "Start");
     this.addNode(firstNode);
@@ -88,18 +89,13 @@ export class StorytreeMinimap {
   }
 
   clear() { this.svg.textContent = ''; }
-  addNode(node) { this.svg.appendChild(node.getGroupNode()); }
+  addNode(node) { this.docMap.appendChild(node.getGroupNode()); }
 
 
   selectNode(node) {
 
-    console.log('box:',node.getBBox());
-    let nodeBounds: SVGRect = node.getBBox();
-    this.selectionHighlighter.setAttribute('x', ''+ (nodeBounds.x - 3));
-    this.selectionHighlighter.setAttribute('y', ''+ (nodeBounds.y - 3));
-    this.selectionHighlighter.setAttribute('width', ''+ (nodeBounds.width + 6));
-    this.selectionHighlighter.setAttribute('height', ''+ (nodeBounds.height + 6));
-
+    console.log('box:',node.getBounds());
+//    let nodeBounds: SVGRect = node.getBBox();
 
   }
 
