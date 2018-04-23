@@ -22,13 +22,13 @@ An editor for 'choose your adventure' style games.  This relies on several Fireb
 ## Getting Started
 
 - Create an account on Firebase and follow the hosting documentation on how to publish your own instance which should create a .firebaserc file for you
-- Deploy the app with the firebase command
+- Deploy the app with the firebase command (from the base directory of this project)
 - Set up firebase authentication
 - Set up a firestore db
 
 ## Publishing
 
-There is no game client available yet.  Publishing 
+There is no game client available yet.  Publishing is to a simple JSON document for now.
 
 ## Continuing development
 

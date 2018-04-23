@@ -1,0 +1,17 @@
+storytree-minimap {
+    div {
+        border: 1px solid black;
+        background-image: url("/assets/image/seamless_paper.png");
+        background-repeat: repeat;
+        // overflow: scroll;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+
+    svg {
+        // background-color: red;
+        height: 100%;
+        width: 3000px;
+    }
+
+}

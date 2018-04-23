@@ -25,7 +25,7 @@
     "serve-static": "^1.13.2",
     "url": "^0.11.0",
     "@capacitor/cli": "^1.0.0-alpha.35",
-    "@capacitor/core": "^1.0.0-alpha.35"  
+    "@capacitor/core": "^1.0.0-alpha.35"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-app-starter.git"
+    "url": "git+https://github.com/builderchad/storytree.git"
   },
   "author": "Chad Thatcher",
   "license": "MIT",
@@ -62,7 +62,7 @@
     "ionic_webpack": "./config/webpack.config.js"
   },
   "OLD___build": {
-    "appId": "com.drakensberg.ionic-electron-test",
+    "appId": "com.drakensberg.storytree",
     "electronVersion": "1.8.4",
     "asar": false,
     "files": [

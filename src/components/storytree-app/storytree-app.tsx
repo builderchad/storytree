@@ -36,7 +36,7 @@ export class StorytreeApp {
   render() {
     return (
       <ion-app>
-        <ion-menu menu-id="mainMenu">
+        <ion-menu menu-id="mainMenu" swipeEnabled={false}>
 
           <ion-content scrollEnabled={false}>
             <ion-tabs tabbarPlacement="top">
