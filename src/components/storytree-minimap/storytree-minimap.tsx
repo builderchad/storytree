@@ -70,14 +70,16 @@ export class StorytreeMinimap {
     });
 
   }
- 
+
   componentDidLoad() {
     // this.selection = document.createElement('span');
     
     this.selected = null;
     this.svg = this.storytreeMinimapEl.querySelector('svg');
+    this.docMap = this.storytreeMinimapEl.querySelector('div.docMap');
 
-    let firstNode = new DocNode(10, 20, "Start");
+
+    let firstNode = new DocNode(40, 30, "Start");
     this.addNode(firstNode);
     this.selectNode(firstNode);
 
@@ -89,7 +91,7 @@ export class StorytreeMinimap {
   }
 
   clear() { this.svg.textContent = ''; }
-  addNode(node) { this.docMap.appendChild(node.getGroupNode()); }
+  addNode(node) { this.docMap.appendChild(node.getEl()); }
 
 
   selectNode(node) {
@@ -118,8 +120,9 @@ export class StorytreeMinimap {
 
   render() {
     return [
-      <div>
-        <svg id="stage"></svg>
+      <div class="container">
+        <svg></svg>
+        <div class="docMap"></div> 
       </div>
     ]
   }

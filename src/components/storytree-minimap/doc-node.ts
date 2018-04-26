@@ -2,15 +2,24 @@ export class DocNode {
 
   container: HTMLDivElement;
   text: HTMLLabelElement;
+  do_summat(ev) {
+    console.log(ev);
+  }
 
   constructor(x, y, text) {
 
     this.container = document.createElement('div');
     this.setAttributes(this.container, {
       class: "docGlyph",
-      top: "10px",
-      left: "10px"
+      draggable: "true",
+      ondragstart: (event) => this.do_summat(event)
     });
+
+    this.container.style.left = x + 'px';
+    this.container.style.top = y + 'px';
+    // this.container.ondragstart(ev)
+
+    this.container.innerHTML = "" + x + "," + y + ":" + text;
 
     // this.groupNode = document.createElementNS(ns, 'g') as SVGGElement;
     // this.boxNode = document.createElementNS(ns, 'rect') as SVGRectElement;
@@ -33,6 +42,10 @@ export class DocNode {
 
     // this.addElement(group);
     // return this;
+  }
+
+  getEl() {
+    return this.container;
   }
 
   getBounds() {
