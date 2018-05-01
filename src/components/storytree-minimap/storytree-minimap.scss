@@ -1,4 +1,13 @@
 storytree-minimap {
+    [draggable] {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        /* Required to make elements draggable in old WebKit */
+        -khtml-user-drag: element;
+        -webkit-user-drag: element;
+    }
 
     div.container {
         position: relative;
@@ -18,8 +27,9 @@ storytree-minimap {
     }
     div.docMap {
         position: absolute;
-        background-image: url("/assets/image/paper_fibers.png");
-        background-repeat: repeat;
+        background: transparent;
+        // background-image: url("/assets/image/paper_fibers.png");
+        // background-repeat: repeat;
         width: 3000px;
         height: 400px;
         top: 0;
@@ -28,10 +38,11 @@ storytree-minimap {
     }
 
     div.docGlyph {
+        cursor: move;
         padding: 2px;
         position: absolute;
         display: block;
-        width: 200px;
+        // width: 200px;
         height: 24px;
         border: 1px solid #555555;
         background-image: url("/assets/image/seamless_paper.png");

@@ -1,31 +1,74 @@
 import { Component, Element } from '@stencil/core';
 import { DocNode } from './doc-node';
-
-
-// const NS = 'http://www.w3.org/2000/svg';
-// wireframe.addEventListener( 'change', function () {
-//   stage.classList.toggle( 'wireframe' );
-// });
-
+import { DocArrow } from './doc-arrow';
 
 @Component({
   tag: 'storytree-minimap',
   styleUrl: 'storytree-minimap.scss'
 })
+
 export class StorytreeMinimap {
   
   @Element() storytreeMinimapEl: HTMLElement;
-
   docMap: HTMLDivElement;
   svg: SVGSVGElement;
   selected: HTMLElement;
 
-  // selection: HTMLElement;
+  componentDidLoad() {
+  
+    this.selected = null;
+    this.svg = this.storytreeMinimapEl.querySelector('svg');
+    this.docMap = this.storytreeMinimapEl.querySelector('div.docMap');
+  
+    let firstNode = new DocNode(10, 40, "Once upon a time...");
+    this.addNode(firstNode);
 
-  // selectionHighlighter: SVGRectElement;
-  // focusHighlighter: SVGRectElement;
+    let secondNode = new DocNode(260, 20, "&#8230;find Baldric");
+    this.addNode(secondNode);
+    this.svg.appendChild((new DocArrow(firstNode, secondNode)).getEl());
 
-  // offset = { x: 0, y: 0 };
+    let thirdNode = new DocNode(260, 60, "&#8230;enter the shop");
+    this.addNode(thirdNode);
+    this.svg.appendChild((new DocArrow(firstNode, thirdNode)).getEl());
+
+    let fourthNode = new DocNode(260, 120, "&#8230;find the tavern");
+    this.addNode(fourthNode);
+    this.svg.appendChild((new DocArrow(firstNode, fourthNode)).getEl());
+
+    this.setListeners();
+    // this.selectNode(firstNode);
+  }
+
+  clear() { this.svg.textContent = ''; }
+
+  addNode(node) { 
+    this.docMap.appendChild(node.getEl()); 
+  }
+
+  selectNode(_node) {
+  }
+
+  updateSelection() {
+	}
+
+  render() {
+    return [
+      <div class="container">
+        <svg>
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
+              <path d="M0,0 L0,6 L9,3 z" fill="#30af30" />
+            </marker>
+            <marker id="arrowB" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
+              <path d="M0,0 L0,6 L9,3 z" fill="#3030af" />
+            </marker>
+          </defs>          
+        </svg>
+        <div class="docMap"></div> 
+      </div>
+    ]
+  } 
+
 
   setListeners() {
     this.svg.addEventListener( 'mouseover', () => this.updateSelection());
@@ -71,62 +114,52 @@ export class StorytreeMinimap {
 
   }
 
-  componentDidLoad() {
-    // this.selection = document.createElement('span');
-    
-    this.selected = null;
-    this.svg = this.storytreeMinimapEl.querySelector('svg');
-    this.docMap = this.storytreeMinimapEl.querySelector('div.docMap');
+
+}
 
 
-    let firstNode = new DocNode(40, 30, "Start");
-    this.addNode(firstNode);
-    this.selectNode(firstNode);
+  // selection: HTMLElement;
+  // selectionHighlighter: SVGRectElement;
+  // focusHighlighter: SVGRectElement;
+  // offset = { x: 0, y: 0 };
 
-        // new DocNode(230, 20, "Branch A");
+    // console.log(posnALeft,posnARight,posnBLeft,posnBRight,sideToJoin);
+  // var arrowLeft  = document.querySelector("#arrowLeft");
+  // var arrowRight = document.querySelector("#arrowRight");
+
+    // let arrowLeft = document.createElementNS(NS, 'path');
+    // let dStrLeft =
+    //     "M" +
+    //     (posnALeft.x      ) + "," + (posnALeft.y) + " " +
+    //     "C" +
+    //     (posnALeft.x - 100) + "," + (posnALeft.y) + " " +
+    //     (posnBLeft.x - 100) + "," + (posnBLeft.y) + " " +
+    //     (posnBLeft.x      ) + "," + (posnBLeft.y);
+    // arrowLeft.setAttribute("d", dStrLeft);
+    // arrowLeft.setAttribute("stroke", "black");
+
+    // let dStrRight =
+    //     "M" +
+    //     (posnBRight.x      ) + "," + (posnBRight.y) + " " +
+    //     "C" +
+    //     (posnBRight.x + 100) + "," + (posnBRight.y) + " " +
+    //     (posnARight.x + 100) + "," + (posnARight.y) + " " +
+    //     (posnARight.x      ) + "," + (posnARight.y);
 
 
-    this.setListeners();
-
-  }
-
-  clear() { this.svg.textContent = ''; }
-  addNode(node) { this.docMap.appendChild(node.getEl()); }
-
-
-  selectNode(node) {
-
-    console.log('box:',node.getBounds());
-//    let nodeBounds: SVGRect = node.getBBox();
-
-  }
-
-
-  updateSelection() {
-    // if (this.selected) {
-    //   if (this.selected.isSameNode(this.svg)) {
-    //     this.selection.style.display = 'none';
-    //   } else {
-    //     let rect = this.selected.getBoundingClientRect();
-    //     // let rect = this.selected.children[0].getBoundingClientRect();
-    //     this.selection.style.left = rect.left + 'px';
-    //     this.selection.style.top = rect.top + 'px';
-    //     this.selection.style.width = rect.width + 'px';
-    //     this.selection.style.height = rect.height + 'px';
-    //     this.selection.style.display = 'block';
-    //   }
-    // }
-	}
-
-  render() {
-    return [
-      <div class="container">
-        <svg></svg>
-        <div class="docMap"></div> 
-      </div>
-    ]
-  }
-
+  // if (this.selected) {
+  //   if (this.selected.isSameNode(this.svg)) {
+  //     this.selection.style.display = 'none';
+  //   } else {
+  //     let rect = this.selected.getBoundingClientRect();
+  //     // let rect = this.selected.children[0].getBoundingClientRect();
+  //     this.selection.style.left = rect.left + 'px';
+  //     this.selection.style.top = rect.top + 'px';
+  //     this.selection.style.width = rect.width + 'px';
+  //     this.selection.style.height = rect.height + 'px';
+  //     this.selection.style.display = 'block';
+  //   }
+  // }
 
   // createRectangle(x: number, y: number) {
   //   let group = document.createElementNS( this.NS, 'g' );
@@ -188,41 +221,4 @@ export class StorytreeMinimap {
   
   // drawConnector(from: SVGElement, to: SVGElement) {
 
-    // var posnALeft = {
-    //   x: divA.offsetLeft - 8,
-    //   y: divA.offsetTop  + divA.offsetHeight / 2
-    // };
-    // var posnARight = {
-    //   x: divA.offsetLeft + divA.offsetWidth + 8,
-    //   y: divA.offsetTop  + divA.offsetHeight / 2    
-    // };
-    // var posnBLeft = {
-    //   x: divB.offsetLeft - 8,
-    //   y: divB.offsetTop  + divA.offsetHeight / 2
-    // };
-    // var posnBRight = {
-    //   x: divB.offsetLeft + divB.offsetWidth + 8,
-    //   y: divB.offsetTop  + divA.offsetHeight / 2
-    // };
-    // var dStrLeft =
-    //     "M" +
-    //     (posnALeft.x      ) + "," + (posnALeft.y) + " " +
-    //     "C" +
-    //     (posnALeft.x - 100) + "," + (posnALeft.y) + " " +
-    //     (posnBLeft.x - 100) + "," + (posnBLeft.y) + " " +
-    //     (posnBLeft.x      ) + "," + (posnBLeft.y);
-    // arrowLeft.setAttribute("d", dStrLeft);
-    // var dStrRight =
-    //     "M" +
-    //     (posnBRight.x      ) + "," + (posnBRight.y) + " " +
-    //     "C" +
-    //     (posnBRight.x + 100) + "," + (posnBRight.y) + " " +
-    //     (posnARight.x + 100) + "," + (posnARight.y) + " " +
-    //     (posnARight.x      ) + "," + (posnARight.y);
-    // arrowRight.setAttribute("d", dStrRight);
-  
-  // }
-  
-
-}
 

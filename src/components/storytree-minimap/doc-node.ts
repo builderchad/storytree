@@ -1,26 +1,55 @@
+import { DocArrow } from './doc-arrow';
+
 export class DocNode {
 
   container: HTMLDivElement;
-  text: HTMLLabelElement;
-  do_summat(ev) {
-    console.log(ev);
-  }
+  currentX: number;
+  currentY: number;
+  arrows: DocArrow[];
 
   constructor(x, y, text) {
-
     this.container = document.createElement('div');
-    this.setAttributes(this.container, {
-      class: "docGlyph",
-      draggable: "true",
-      ondragstart: (event) => this.do_summat(event)
-    });
-
+    this.setAttributes(this.container, { class: 'docGlyph', draggable: 'true' });
     this.container.style.left = x + 'px';
-    this.container.style.top = y + 'px';
-    // this.container.ondragstart(ev)
+    this.container.style.top  = y + 'px';
+    this.container.innerHTML  = text;
+    this.container.addEventListener('dragstart', (event) => this.handleDragStart(event), false);
+    this.container.addEventListener('dragend',   (event) => this.handleDragEnd(event),   false);
+    this.arrows = [];
+  }
 
-    this.container.innerHTML = "" + x + "," + y + ":" + text;
+  handleDragStart(event) {
+    this.currentX = event.clientX - this.container.offsetLeft;
+    this.currentY = event.clientY - this.container.offsetTop;
+  }
 
+  handleDragEnd(event) {
+    this.container.style.left = (event.clientX - this.currentX) + 'px';
+    this.container.style.top  = (event.clientY - this.currentY) + 'px';    
+    this.arrows.forEach((docArrow) => docArrow.redraw())
+  }
+
+  addArrow(docArrow: DocArrow) {
+    this.arrows.push(docArrow);
+  }
+
+  getEl() {
+    return this.container;
+  }
+
+  setAttributes(el, attributes) {
+    for (let key of Object.keys(attributes)) {
+      el.setAttribute(key, attributes[key]);
+    }
+  }  
+}
+
+
+// getBounds() {
+//   return this.container.getBoundingClientRect();
+// }
+
+    // this.container.addEventListener('drop', this.handleDrop, false);
     // this.groupNode = document.createElementNS(ns, 'g') as SVGGElement;
     // this.boxNode = document.createElementNS(ns, 'rect') as SVGRectElement;
     // this.setAttributes(this.boxNode, {
@@ -42,24 +71,6 @@ export class DocNode {
 
     // this.addElement(group);
     // return this;
-  }
-
-  getEl() {
-    return this.container;
-  }
-
-  getBounds() {
-    // console.log(this.groupNode.getBBox());
-    return this.container.getBoundingClientRect();
-  }
-
-  setAttributes(el, attributes) {
-    for (let key of Object.keys(attributes)) {
-      el.setAttribute(key, attributes[key]);
-    }
-  }  
-}
-
 
 // export class DocNode {
 

@@ -29,6 +29,7 @@ export class StorytreeApp {
     await toast.onWillDismiss()
     window.location.reload();
   }
+  
   openMenu() {
 
   }
