@@ -1,0 +1,125 @@
+storytree-splitter.vertical {
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    
+
+    > :first-child {
+        width: 80%;
+        // background: #ccc;
+    }
+
+    div.vertical {
+        width: 2px;
+        background: #65bfbb;
+        position: relative;
+        cursor: col-resize;
+    }
+
+    > :last-child {
+        flex: auto;
+        background: transparent;
+    }
+    
+    // * {
+    //     margin: 0;
+    //     padding: 0;
+    //     height: 100%;
+    // }
+
+}
+
+storytree-splitter.horizontal {
+
+    // display: grid;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    
+
+    > :first-child {
+        display: flex;
+        height: 80%;
+        width: 100%;
+        // background: #ccc;
+    }
+
+    div.horizontal {
+        height: 2px;
+        width: 100%;
+        background: #65bfbb;
+        position: relative;
+        cursor: row-resize;
+    }
+
+    > :last-child {
+        // height: 36%;
+        flex: auto;
+        // background: #eee;
+    }
+    
+    // * {
+    //     margin: 0;
+    //     padding: 0;
+    //     height: 100%;
+    // }
+
+}
+
+    // div {
+    //     width: 100%;
+    //     height: 2px;
+    //     background-color: firebrick;
+    // }
+    // div.horizontal {
+    //     width: 100%;
+    //     // height: 1px;
+    //     border-top: 1px dashed #999;
+    //     cursor: row-resize;
+    // }
+    // div.vertical {
+    //     position: relative;
+    //     float: left;
+    //     height: 100%;
+    //     border-left: 1px dashed #999;
+    //     cursor: col-resize;
+    // }
+    // div.vertical > div {
+    //     position: absolute;
+    //     float: left;
+    // }
+
+
+    // .left-pane {
+    //     width: 18%;
+    //     background: #ccc;
+    // }
+
+    // .panes-separator {
+    //     width: 2%;
+    //     background: red;
+    //     position: relative;
+    //     cursor: col-resize;
+    // }
+
+    // .right-pane {
+    //     flex: auto;
+    //     background: #eee;
+    // }
+
+    
+    // .panes-separator,
+    // .left-pane,
+    // .right-pane {
+    //     margin: 0;
+    //     padding: 0;
+    //     height: 100%;
+    // }

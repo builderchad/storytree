@@ -327,6 +327,45 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface StorytreeSplitter {
+      'heightTo': string;
+      'maxSize': number;
+      'minSize': number;
+      'type': string;
+    }
+  }
+
+  interface HTMLStorytreeSplitterElement extends StencilComponents.StorytreeSplitter, HTMLStencilElement {}
+
+  var HTMLStorytreeSplitterElement: {
+    prototype: HTMLStorytreeSplitterElement;
+    new (): HTMLStorytreeSplitterElement;
+  };
+  interface HTMLElementTagNameMap {
+    'storytree-splitter': HTMLStorytreeSplitterElement;
+  }
+  interface ElementTagNameMap {
+    'storytree-splitter': HTMLStorytreeSplitterElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'storytree-splitter': JSXElements.StorytreeSplitterAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface StorytreeSplitterAttributes extends HTMLAttributes {
+      'heightTo'?: string;
+      'maxSize'?: number;
+      'minSize'?: number;
+      'type'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface UserTab {
 
     }

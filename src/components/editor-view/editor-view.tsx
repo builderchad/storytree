@@ -1,4 +1,4 @@
-import { Component, Listen, Element } from '@stencil/core';
+import { Component, Element } from '@stencil/core';
 @Component({
   tag: 'editor-view',
   styleUrl: 'editor-view.scss'
@@ -7,14 +7,14 @@ export class EditorView {
 
   @Element() editorViewEl: HTMLElement;
 
-  @Listen('window:resize')
-  handleResize(_ev) {
-    this.fitToSize();
-  }
+  // @Listen('window:resize')
+  // handleResize(_ev) {
+  //   this.fitToSize();
+  // }
 
-  componentDidLoad() {
-    this.fitToSize();
-  }
+  // componentDidLoad() {
+  //   this.fitToSize();
+  // }
 
   render() {
     return [
@@ -25,16 +25,21 @@ export class EditorView {
         </ion-navbar>
       </ion-header>,
       <ion-content scrollEnabled={false}>
-        <storytree-editor></storytree-editor>
-        <storytree-minimap></storytree-minimap>
+        
+        <storytree-splitter type="horizontal" minSize={40} maxSize={90}>
+          <storytree-editor slot="top"></storytree-editor>
+          <storytree-minimap slot="bottom"></storytree-minimap>
+        </storytree-splitter>
+        
       </ion-content>
     ];
   }
 
-  fitToSize() {
-    const currentHeight = this.editorViewEl.querySelector('ion-content').offsetHeight;
-    const sed = this.editorViewEl.querySelector('storytree-editor');
-    sed.style.height = (currentHeight - 200) + "px";
-  }
+  // fitToSize() {
+  //   const currentHeight = this.editorViewEl.querySelector('ion-content').offsetHeight;
+  //   const sed = this.editorViewEl.querySelector('storytree-editor');
+  //   sed.style.height = (currentHeight - 300) + "px";
+  //   console.log(sed.style.height);
+  // }
 
 }

@@ -21,17 +21,16 @@ export class HomeView {
           <ion-item><ion-icon name="star"></ion-icon> &nbsp; Github repo</ion-item>
           <ion-item><ion-icon name="star"></ion-icon> &nbsp; Hosting on Firebase</ion-item>
           <ion-item><ion-icon name="star"></ion-icon> &nbsp; Firestore on Firebase</ion-item>
-          <ion-item><ion-icon name="star-half"></ion-icon> &nbsp; UI layout</ion-item>
+          <ion-item><ion-icon name="star"></ion-icon> &nbsp; UI layout</ion-item>
 
           <ion-item>
             <ion-icon name="cube"></ion-icon>
             <ion-list>
               <ion-item><ion-icon name="star-outline"></ion-icon> &nbsp; Landing with notes on usage</ion-item>
               <ion-item><ion-icon name="star-half"></ion-icon> &nbsp; Main text editor</ion-item>
-              <ion-item><ion-icon name="star-outline"></ion-icon> &nbsp; Page settings tab (rhs of text editor)</ion-item>
-              <ion-item><ion-icon name="star-outline"></ion-icon> &nbsp; Choices list (below text editor)</ion-item>
+              <ion-item><ion-icon name="star-half"></ion-icon> &nbsp; Page settings tab (rhs of text editor)</ion-item>
+              <ion-item><ion-icon name="star-half"></ion-icon> &nbsp; Choices list (below text editor)</ion-item>
               <ion-item><ion-icon name="star-half"></ion-icon> &nbsp; Mini-map</ion-item>
-              <ion-item><ion-icon name="star-outline"></ion-icon> &nbsp; Resize handle btw text editor &amp; mmap</ion-item>
               <ion-item><ion-icon name="star-half"></ion-icon> &nbsp; Login &rarr; profile (side-bar)</ion-item>
               <ion-item><ion-icon name="star-outline"></ion-icon> &nbsp; Story list &amp; create (side-bar)</ion-item>
               <ion-item><ion-icon name="star-outline"></ion-icon> &nbsp; Story settings (side-bar)</ion-item>

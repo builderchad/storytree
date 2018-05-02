@@ -1,35 +1,35 @@
-
 editor-view {
 
-    storytree-editor {
-        padding: 3px;
-        display: block;
-        overflow: auto;
-    }
-
-
-    storytree-editor div {
+    ion-content div.scroll-inner {
         height: 100%;
-        // display: block;
-        // overflow: auto;
-        padding: 4px;
-        // background: yellow;
     }
 
-    storytree-editor textarea {
-        font-size: 1.3em;
-        padding: 6px;
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-image: url("/assets/image/paper_fibers.png");
-        background-repeat: repeat;
-        resize: none;
-        overflow-y: scroll;
-        -webkit-box-shadow: 0 10px 6px -6px #777;
-           -moz-box-shadow: 0 10px 6px -6px #777;
-                box-shadow: 0 10px 6px -6px #777;
-    }
+    // storytree-editor {
+    //     padding: 3px;
+    //     display: block;
+    //     overflow: auto;
+    // }
 
+
+    // storytree-editor div {
+    //     height: 100%;
+    //     padding: 4px;
+    // }
+
+    // storytree-editor textarea {
+        
+    //     font-size: 1.3em;
+    //     padding: 6px;
+    //     display: block;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-image: url("/assets/image/paper_fibers.png");
+    //     background-repeat: repeat;
+    //     resize: none;
+    //     overflow-y: scroll;
+    //     // -webkit-box-shadow: 0 10px 6px -6px #777;
+    //     //    -moz-box-shadow: 0 10px 6px -6px #777;
+    //     //         box-shadow: 0 10px 6px -6px #777;
+    // }
 
 }

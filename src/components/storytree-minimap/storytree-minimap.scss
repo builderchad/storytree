@@ -1,4 +1,7 @@
 storytree-minimap {
+
+    // height: 100% !important;
+
     [draggable] {
         -moz-user-select: none;
         -khtml-user-select: none;
@@ -10,28 +13,29 @@ storytree-minimap {
     }
 
     div.container {
-        position: relative;
-        border: 1px solid black;
+        position: absolute;
+        // border: 1px solid black;
         background-image: url("/assets/image/seamless_paper.png");
         background-repeat: repeat;
         overflow: scroll;
         // overflow-x: scroll;
         // overflow-y: hidden;
-        margin: 3px;
-        height: 193px;
+        // margin: 3px;
+        // display: block;
+        height: auto;
+        width: 100%;
         -webkit-box-shadow: 0 10px 6px -6px #777;
             -moz-box-shadow: 0 10px 6px -6px #777;
-                box-shadow: 0 10px 6px -6px #777;    
-        
-            
+                box-shadow: 0 10px 6px -6px #777;
     }
+
     div.docMap {
         position: absolute;
         background: transparent;
         // background-image: url("/assets/image/paper_fibers.png");
         // background-repeat: repeat;
         width: 3000px;
-        height: 400px;
+        height: 1000px;
         top: 0;
         left: 0;
         overflow: hidden;
@@ -42,7 +46,7 @@ storytree-minimap {
         padding: 2px;
         position: absolute;
         display: block;
-        // width: 200px;
+        width: auto;
         height: 24px;
         border: 1px solid #555555;
         background-image: url("/assets/image/seamless_paper.png");
@@ -56,8 +60,9 @@ storytree-minimap {
     }
 
     svg {
-        height: 400px;
-        width: 3000px;
+        // height: 400px;
+        // width: 3000px;
+        
     }
 
 }

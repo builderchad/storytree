@@ -35,6 +35,10 @@ export class StorytreeMinimap {
     this.addNode(fourthNode);
     this.svg.appendChild((new DocArrow(firstNode, fourthNode)).getEl());
 
+    let fifthNode = new DocNode(260, 160, "&#8230;work out css height");
+    this.addNode(fifthNode);
+    this.svg.appendChild((new DocArrow(firstNode, fifthNode)).getEl());
+
     this.setListeners();
     // this.selectNode(firstNode);
   }
@@ -52,9 +56,9 @@ export class StorytreeMinimap {
 	}
 
   render() {
-    return [
+    return (
       <div class="container">
-        <svg>
+        <svg width="100%" height="100%">
           <defs>
             <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
               <path d="M0,0 L0,6 L9,3 z" fill="#30af30" />
@@ -66,7 +70,7 @@ export class StorytreeMinimap {
         </svg>
         <div class="docMap"></div> 
       </div>
-    ]
+    )
   } 
 
 

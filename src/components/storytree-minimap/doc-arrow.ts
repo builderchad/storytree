@@ -33,22 +33,22 @@ export class DocArrow {
 
     setRightArrow() {
 			// Draw from left to right
-			let posnARight = {
+			let posARight = {
 					x: this.fromDiv.offsetLeft + this.fromDiv.offsetWidth + 1,
 					y: (this.fromDiv.offsetTop  + this.fromDiv.offsetHeight / 2) + 3
 			};
-			let posnBLeft = {
+			let posBLeft = {
 					x: this.toDiv.offsetLeft - 10,
 					y: this.toDiv.offsetTop  + this.toDiv.offsetHeight / 2
 			};
 
 			let curveData = 
 					"M" +
-					(posnARight.x      ) + "," + (posnARight.y) + " " +
+					(posARight.x      ) + "," + (posARight.y) + " " +
 					"C" +
-					(posnARight.x + 38) + "," + (posnARight.y) + " " +
-					(posnBLeft.x - 38) + "," + (posnBLeft.y) + " " +
-					(posnBLeft.x      ) + "," + (posnBLeft.y);    
+					(posARight.x + 38) + "," + (posARight.y) + " " +
+					(posBLeft.x - 38) + "," + (posBLeft.y) + " " +
+					(posBLeft.x      ) + "," + (posBLeft.y);    
 
 			this.arrow.setAttribute("stroke", "#30af30");
 			this.arrow.setAttribute("marker-end", "url(#arrow)");
@@ -57,22 +57,22 @@ export class DocArrow {
     
     setLeftArrow() {
 			// Draw from right to left
-			let posnALeft = {
+			let posALeft = {
 					x: this.fromDiv.offsetLeft - 1,
 					y: this.fromDiv.offsetTop  + this.fromDiv.offsetHeight / 2
 			};
-			let posnBRight = {
+			let posBRight = {
 					x: this.toDiv.offsetLeft + this.toDiv.offsetWidth + 8,
 					y: (this.toDiv.offsetTop  + this.toDiv.offsetHeight / 2) - 3
 			};
 
 			let curveData = 
 					"M" +
-					(posnALeft.x      ) + "," + (posnALeft.y) + " " +
+					(posALeft.x      ) + "," + (posALeft.y) + " " +
 					"C" +
-					(posnALeft.x - 38) + "," + (posnALeft.y) + " " +
-					(posnBRight.x + 38) + "," + (posnBRight.y) + " " +
-					(posnBRight.x      ) + "," + (posnBRight.y);    
+					(posALeft.x - 38) + "," + (posALeft.y) + " " +
+					(posBRight.x + 38) + "," + (posBRight.y) + " " +
+					(posBRight.x      ) + "," + (posBRight.y);    
 			
 			this.arrow.setAttribute("stroke", "#3030af");
 			this.arrow.setAttribute("marker-end", "url(#arrowB)");
