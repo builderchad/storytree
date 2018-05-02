@@ -26,7 +26,7 @@ export class EditorView {
       </ion-header>,
       <ion-content scrollEnabled={false}>
         
-        <storytree-splitter type="horizontal" minSize={40} maxSize={90}>
+        <storytree-splitter type="horizontal" minSize={40} maxSize={90} fullPage={true}>
           <storytree-editor slot="top"></storytree-editor>
           <storytree-minimap slot="bottom"></storytree-minimap>
         </storytree-splitter>

@@ -1,20 +1,41 @@
 storytree-editor {
 
+    // border-top: 1px solid #aaa;
+    // margin-bottom: 6px;
+    // -webkit-box-shadow: 0 10px 6px -6px #777;
+    //        -moz-box-shadow: 0 10px 6px -6px #777;
+    //             box-shadow: 0 10px 6px -6px #777;
+
     div.editor {
     }
 
+    div.pageSettings {
+        background-image: url("/assets/image/paper_fibers.png");
+        background-repeat: repeat;
+        padding: 4px;
+        // background: red;        
+    }
+
     div.linker {
-        background: #efd1f6;      
+        // display: inline-block;
+        background-image: url("/assets/image/paper_fibers.png");
+        background-repeat: repeat;
+        // background: red;
+        // border: 1px solid red;
+        padding: 4px;
+        overflow-y: scroll;
+        // height: 100%;
     }
 
     div.editor textarea {
+        border: none;
         font-size: 1.3em;
         padding: 6px;
         display: block;
         width: 100%;
         height: 100%;
-        // background-image: url("/assets/image/paper_fibers.png");
-        // background-repeat: repeat;
+        background-image: url("/assets/image/paper_fibers.png");
+        background-repeat: repeat;
         resize: none;
         overflow-y: scroll;
         // -webkit-box-shadow: 0 10px 6px -6px #777;

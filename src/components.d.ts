@@ -328,7 +328,7 @@ declare global {
 
   namespace StencilComponents {
     interface StorytreeSplitter {
-      'heightTo': string;
+      'fullPage': boolean;
       'maxSize': number;
       'minSize': number;
       'type': string;
@@ -354,7 +354,7 @@ declare global {
   }
   namespace JSXElements {
     export interface StorytreeSplitterAttributes extends HTMLAttributes {
-      'heightTo'?: string;
+      'fullPage'?: boolean;
       'maxSize'?: number;
       'minSize'?: number;
       'type'?: string;

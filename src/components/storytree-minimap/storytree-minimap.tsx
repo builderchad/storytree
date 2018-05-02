@@ -58,13 +58,13 @@ export class StorytreeMinimap {
   render() {
     return (
       <div class="container">
-        <svg width="100%" height="100%">
+        <svg class="shadow" width="100%" height="100%">
           <defs>
-            <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
-              <path d="M0,0 L0,6 L9,3 z" fill="#30af30" />
+            <marker id="arrow" markerWidth="15" markerHeight="15" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
+              <path d="M0,0 L0,6 L9,3 z" fill="#65bfbb" />
             </marker>
             <marker id="arrowB" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
-              <path d="M0,0 L0,6 L9,3 z" fill="#3030af" />
+              <path d="M0,0 L0,6 L9,3 z" fill="#65bfbb" />
             </marker>
           </defs>          
         </svg>
@@ -226,3 +226,14 @@ export class StorytreeMinimap {
   // drawConnector(from: SVGElement, to: SVGElement) {
 
 
+  //   <filter id="dropshadow" height="130%">
+  //   <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+  //   <feOffset dx="2" dy="2" result="offsetblur"/>
+  //   <feComponentTransfer>
+  //     <feFuncA type="linear" slope="0.5"/>
+  //   </feComponentTransfer>
+  //   <feMerge> 
+  //     <feMergeNode/>
+  //     <feMergeNode in="SourceGraphic"/>
+  //   </feMerge>
+  // </filter>  

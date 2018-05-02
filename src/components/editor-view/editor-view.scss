@@ -1,5 +1,9 @@
 editor-view {
 
+    ion-header {
+        border-bottom: 1px solid #aaa;
+    }
+
     ion-content div.scroll-inner {
         height: 100%;
     }

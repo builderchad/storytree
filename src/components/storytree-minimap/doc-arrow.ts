@@ -14,6 +14,7 @@ export class DocArrow {
 			this.arrow.setAttribute("fill", "none");
 			this.arrow.setAttribute("stroke-width", "2");
 			this.arrow.setAttribute("marker-end", "url(#arrow)");
+			// this.arrow.setAttribute("style", "filter:url(#dropshadow)");
 			this.redraw();
 			fromNode.addArrow(this);
 			toNode.addArrow(this);
@@ -38,7 +39,7 @@ export class DocArrow {
 					y: (this.fromDiv.offsetTop  + this.fromDiv.offsetHeight / 2) + 3
 			};
 			let posBLeft = {
-					x: this.toDiv.offsetLeft - 10,
+					x: this.toDiv.offsetLeft - 14,
 					y: this.toDiv.offsetTop  + this.toDiv.offsetHeight / 2
 			};
 
@@ -50,7 +51,7 @@ export class DocArrow {
 					(posBLeft.x - 38) + "," + (posBLeft.y) + " " +
 					(posBLeft.x      ) + "," + (posBLeft.y);    
 
-			this.arrow.setAttribute("stroke", "#30af30");
+			this.arrow.setAttribute("stroke", "#55afab");
 			this.arrow.setAttribute("marker-end", "url(#arrow)");
 			this.arrow.setAttribute("d", curveData);
     }
@@ -62,7 +63,7 @@ export class DocArrow {
 					y: this.fromDiv.offsetTop  + this.fromDiv.offsetHeight / 2
 			};
 			let posBRight = {
-					x: this.toDiv.offsetLeft + this.toDiv.offsetWidth + 8,
+					x: this.toDiv.offsetLeft + this.toDiv.offsetWidth + 12,
 					y: (this.toDiv.offsetTop  + this.toDiv.offsetHeight / 2) - 3
 			};
 
